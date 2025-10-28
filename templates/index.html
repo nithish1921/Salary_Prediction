@@ -24,12 +24,12 @@
         <div class="card shadow-sm mb-4">
           <div class="card-body">
             <h4 class="text-secondary">Manual Input</h4>
-            <form method="post">
+            <form method="post" id="manualForm">
               <input type="hidden" name="predict_manual" value="1">
 
               <div class="mb-2">
                 <label>Age</label>
-                <input class="form-control" name="Age" min="18" max="100" type="number" placeholder="e.g. 30" required>
+                <input class="form-control" id="age" name="Age" min="18" max="100" type="number" placeholder="e.g. 30" required>
               </div>
 
               <div class="mb-2">
@@ -64,7 +64,7 @@
 
               <div class="mb-2">
                 <label>Years of Experience</label>
-                <input class="form-control" name="Years_of_Experience" type="number" step="0.1" placeholder="e.g. 3" required>
+                <input class="form-control" id="exp" name="Years_of_Experience" type="number" step="0.1" placeholder="e.g. 3" required>
               </div>
 
               <div class="mb-2">
@@ -121,5 +121,29 @@
       </div>
     </div>
   </div>
+
+  <!-- 🧠 JavaScript validation -->
+  <script>
+    const ageInput = document.getElementById('age');
+    const expInput = document.getElementById('exp');
+
+    ageInput.addEventListener('input', () => {
+      const age = parseFloat(ageInput.value);
+      if (!isNaN(age) && age >= 18) {
+        expInput.max = age - 18;
+      } else {
+        expInput.removeAttribute('max');
+      }
+    });
+
+    document.getElementById('manualForm').addEventListener('submit', (e) => {
+      const age = parseFloat(ageInput.value);
+      const exp = parseFloat(expInput.value);
+      if (exp > age - 18) {
+        e.preventDefault();
+        alert(`Years of Experience cannot be greater than Age - 18. (Max allowed: ${age - 18})`);
+      }
+    });
+  </script>
 </body>
 </html>
