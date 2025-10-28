@@ -14,6 +14,27 @@
       color: black;
       text-shadow: 1px 1px 2px #ccc;
     }
+
+    /* Added: Loader styling */
+    #loadingOverlay {
+      display: none; /* hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 9999;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
   </style>
   
 </head>
@@ -143,10 +164,20 @@
     </div>
   </div>
 
+  <!-- Added: Loading Overlay -->
+  <div id="loadingOverlay" class="d-flex">
+    <div>
+      <div class="spinner-border text-primary mb-3" role="status"></div>
+      <h5 class="text-primary fw-bold">Predicting... Please wait</h5>
+    </div>
+  </div>
+
   <!-- JavaScript validation -->
   <script>
     const ageInput = document.getElementById('age');
     const expInput = document.getElementById('exp');
+    const form = document.getElementById('manualForm');
+    const loader = document.getElementById('loadingOverlay'); // Added
 
     ageInput.addEventListener('input', () => {
       const age = parseFloat(ageInput.value);
@@ -157,13 +188,17 @@
       }
     });
 
-    document.getElementById('manualForm').addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e) => {
       const age = parseFloat(ageInput.value);
       const exp = parseFloat(expInput.value);
       if (exp > age - 18) {
         e.preventDefault();
         alert(`Years of Experience cannot be greater than Age - 18. (Max allowed: ${age - 18})`);
+        return;
       }
+
+      // Added: Show loader while waiting for response
+      loader.style.display = 'flex';
     });
   </script>
 </body>
