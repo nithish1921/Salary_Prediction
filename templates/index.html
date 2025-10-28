@@ -1,79 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Salary Prediction App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    body {
-      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    h1 {
-      text-align: center;
-      font-weight: 700;
-      color: #ff6600;
-      text-shadow: 1px 1px 2px #ccc;
-    }
-
-    .card {
-      border-radius: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .ai-bubble {
-      background-color: #fff5e6;
-      border-left: 5px solid #ff8800;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 10px;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .table-container {
-      max-height: 400px;
-      overflow: auto;
-    }
-
-    button {
-      border-radius: 10px !important;
-    }
-  </style>
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet"
+  >
 </head>
 
-<body>
+<body class="bg-light">
   <div class="container py-4">
-    <h1 class="mb-4">💼 Salary Prediction System</h1>
+    <h1 class="mb-4 text-primary">💼 Salary Prediction System</h1>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for cat, msg in messages %}
-          <div class="alert alert-{{ cat }} text-center">{{ msg }}</div>
+          <div class="alert alert-{{ cat }}">{{ msg }}</div>
         {% endfor %}
       {% endif %}
     {% endwith %}
 
     <div class="row">
-      <!-- Manual Input Section -->
+      <!-- Manual Input -->
       <div class="col-md-6">
         <div class="card shadow-sm mb-4">
           <div class="card-body">
-            <h4 class="text-secondary mb-3">Manual Input</h4>
+            <h4 class="text-secondary">Manual Input</h4>
             <form method="post" id="manualForm">
               <input type="hidden" name="predict_manual" value="1">
 
@@ -141,25 +95,24 @@
             </form>
 
             {% if prediction %}
-              <div class="alert alert-success mt-3 text-center">
-                <strong>{{ prediction }}</strong>
-              </div>
+              <div class="alert alert-success mt-3">{{ prediction }}</div>
             {% endif %}
 
             {% if llm_message %}
-              <div class="ai-bubble">
-                <strong>💬 AI Insight:</strong> {{ llm_message }}
+              <div class="alert alert-info mt-3">
+                <strong>AI Insight 💡:</strong> {{ llm_message }}
               </div>
             {% endif %}
+            
           </div>
         </div>
       </div>
 
-      <!-- Bulk Upload Section -->
+      <!-- Bulk Upload -->
       <div class="col-md-6">
         <div class="card shadow-sm mb-4">
           <div class="card-body">
-            <h4 class="text-secondary mb-3">Bulk Upload (CSV)</h4>
+            <h4 class="text-secondary">Bulk Upload (CSV)</h4>
             <form method="post" enctype="multipart/form-data">
               <input type="hidden" name="predict_csv" value="1">
               <div class="mb-2">
@@ -170,8 +123,10 @@
 
             {% if result_table %}
               <div class="mt-4">
-                <h5 class="text-center">Prediction Results</h5>
-                <div class="table-container">{{ result_table | safe }}</div>
+                <h5>Prediction Results</h5>
+                <div style="max-height: 400px; overflow:auto;">
+                  {{ result_table | safe }}
+                </div>
               </div>
             {% endif %}
           </div>
@@ -180,7 +135,7 @@
     </div>
   </div>
 
-  <!-- JS Validation -->
+  <!-- JavaScript validation -->
   <script>
     const ageInput = document.getElementById('age');
     const expInput = document.getElementById('exp');
