@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.preprocessing import LabelEncoder
+from waitress import serve
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -128,5 +129,5 @@ def index():
     return render_template("index.html", dropdowns=dropdowns)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    serve(app, host='0.0.0.0', port=8080)
