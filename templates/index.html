@@ -17,13 +17,13 @@
 
     /* Added: Loader styling */
     #loadingOverlay {
-      display: none; /* hidden by default */
+      display: none; /* hidden until user submits */
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       z-index: 9999;
       text-align: center;
       justify-content: center;
@@ -68,7 +68,7 @@
               <div class="mb-2">
                 <label>Gender</label>
                 <select class="form-select" name="Gender" required>
-                  <option selected>Select Gender</option>
+                  <option value="">Select Gender</option>
                   {% for g in dropdowns.Gender %}
                     <option>{{ g }}</option>
                   {% endfor %}
@@ -78,7 +78,7 @@
               <div class="mb-2">
                 <label>Department</label>
                 <select class="form-select" name="Department" required>
-                  <option selected>Select Department</option>
+                  <option value="">Select Department</option>
                   {% for d in dropdowns.Department %}
                     <option>{{ d }}</option>
                   {% endfor %}
@@ -88,7 +88,7 @@
               <div class="mb-2">
                 <label>Job Title</label>
                 <select class="form-select" name="Job_Title" required>
-                  <option selected>Select Job Title</option>
+                  <option value="">Select Job Title</option>
                   {% for j in dropdowns.Job_Title %}
                     <option>{{ j }}</option>
                   {% endfor %}
@@ -103,7 +103,7 @@
               <div class="mb-2">
                 <label>Education Level</label>
                 <select class="form-select" name="Education_Level" required>
-                  <option selected>Select Education Level</option>
+                  <option value="">Select Education Level</option>
                   {% for e in dropdowns.Education_Level %}
                     <option>{{ e }}</option>
                   {% endfor %}
@@ -113,7 +113,7 @@
               <div class="mb-2">
                 <label>Location</label>
                 <select class="form-select" name="Location" required>
-                  <option selected>Select Location</option>
+                  <option value="">Select Location</option>
                   {% for l in dropdowns.Location %}
                     <option>{{ l }}</option>
                   {% endfor %}
@@ -177,7 +177,7 @@
     const ageInput = document.getElementById('age');
     const expInput = document.getElementById('exp');
     const form = document.getElementById('manualForm');
-    const loader = document.getElementById('loadingOverlay'); // Added
+    const loader = document.getElementById('loadingOverlay');
 
     ageInput.addEventListener('input', () => {
       const age = parseFloat(ageInput.value);
@@ -191,13 +191,16 @@
     form.addEventListener('submit', (e) => {
       const age = parseFloat(ageInput.value);
       const exp = parseFloat(expInput.value);
+
+      if (isNaN(age) || isNaN(exp)) return; // skip if not filled
+
       if (exp > age - 18) {
         e.preventDefault();
         alert(`Years of Experience cannot be greater than Age - 18. (Max allowed: ${age - 18})`);
         return;
       }
 
-      // Added: Show loader while waiting for response
+      // ✅ Show loader only after valid form submission
       loader.style.display = 'flex';
     });
   </script>
