@@ -56,7 +56,7 @@ def encode_input(data_row):
 def llm_call(prediction, params):
     try:
         genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
 
         prompt = f"""
         You are a friendly AI salary advisor.
