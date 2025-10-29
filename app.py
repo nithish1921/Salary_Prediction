@@ -151,4 +151,4 @@ def index():
 
 if __name__ == '__main__':
     serve(app, host='0.0.0.0', port=8080) # For production
-    app.run(debug=True)  # (For local testing only)
+    # app.run(debug=True)  # (For local testing only)
