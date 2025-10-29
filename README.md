@@ -37,6 +37,7 @@ The project allows both **Manual** and **Bulk (CSV)** salary predictions, suppor
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/nithish1921/Salary_Prediction.git
+cd Salary_Prediction
 ```
 
 ### 2️⃣ Create Virtual Environment
@@ -137,7 +138,6 @@ if __name__ == '__main__':
 
 ---
 
-
 ## 📚 Future Enhancements
 
 - 🔐 Add user authentication  
@@ -149,9 +149,6 @@ if __name__ == '__main__':
 
 ## 🧑‍💻 Author
 
-**Yendluri Nithish** 
+**Yendluri Nithish**
+
 🌐 [LinkedIn](https://www.linkedin.com/in/nithish-yendluri-520279301) | [GitHub](https://github.com/nithish1921)
-
----
-
-⭐ **If you like this project, don’t forget to give it a star on GitHub!**
