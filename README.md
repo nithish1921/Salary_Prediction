@@ -77,7 +77,7 @@ Create a file named `.env` in your project folder and write:
 ```
 GEMINI_API_KEY=your_actual_api_key_here
 ```
-If you're using the Gemini AI API key, just create a .env file in your project folder and replace "your_actual_api_key_here" with your actual key — no need to modify app.py code.
+If you're using the Gemini AI API key, just create a .env file in your project folder and replace "your_actual_api_key_here" with your actual key no need to modify app.py code.
 
 In your `app.py`, ensure you have the following:
 ```python
@@ -120,34 +120,23 @@ Make sure you update **both**:
 ## ▶️ Running the Application
 
 ### For local testing:
+Uncomment the `app.run(debug=True)` line and comment the `serve()`:
 ```python
 if __name__ == '__main__':
-    app.run(debug=True)
+    # serve(app, host='0.0.0.0', port=8080)  # For production
+    app.run(debug=True)  # For local testing
 ```
 
 ### For production (Render deployment):
-Uncomment the `serve()` line:
+Uncomment the `serve()` line and comment the `app.run(debug=True)`:
 ```python
 if __name__ == '__main__':
-    # serve(app, host='0.0.0.0', port=8080)  # For production (Render)
-    app.run(debug=True)  # For local testing only
+    serve(app, host='0.0.0.0', port=8080)  # For production
+    #app.run(debug=True)  # For local testing
 ```
 
 ---
 
-## 📁 Project Structure
-
-Your project folder should look like:
-
-```
-salary-prediction/
-├── app.py
-├── templates/
-│   └── index.html
-├── requirements.txt
-└── .env        # Exists locally only, not on GitHub
-```
----
 
 ## 📚 Future Enhancements
 
@@ -160,8 +149,7 @@ salary-prediction/
 
 ## 🧑‍💻 Author
 
-**Yendluri Nithish**  
-📧 your.email@example.com  
+**Yendluri Nithish** 
 🌐 [LinkedIn](https://www.linkedin.com/in/nithish-yendluri-520279301) | [GitHub](https://github.com/nithish1921)
 
 ---
