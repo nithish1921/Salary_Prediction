@@ -51,7 +51,8 @@ source venv/bin/activate   # On macOS/Linux
 
 ### 3️⃣ Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt # Check requirements after installation. This project uses Gemini AI for insights — update AI-related packages if you're using a different AI provider.
+
 ```
 
 ---
