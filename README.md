@@ -6,17 +6,16 @@ It also provides **AI-generated insights** using **Google Gemini** (or any other
 ---
 
 ## 🚀 Live Demo
-👉 [https://salary-prediction-gi9d.onrender.com/]()
+👉 **[https://salary-prediction-gi9d.onrender.com/](https://salary-prediction-gi9d.onrender.com/)**
 
 ---
 
 ## 🧠 Project Overview
 
-The project allows both **manual** and **bulk (CSV)** salary predictions, supported by:
+The project allows both **Manual** and **Bulk (CSV)** salary predictions, supported by:
 
 - 🤖 **AI-powered salary insights** using Gemini API  
-- 🎨 **Beautiful Bootstrap UI**  
-- ⏳ **Real-time “Predicting… Please wait” status**  
+- 🎨 **Beautiful Bootstrap UI** 
 - ☁️ **Deployed on Render for public access**
 
 ---
@@ -37,8 +36,7 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/nithish1921/salary-prediction-system.git
-cd salary-prediction-system
+git clone https://github.com/nithish1921/Salary_Prediction.git
 ```
 
 ### 2️⃣ Create Virtual Environment
@@ -75,11 +73,12 @@ pip install -r requirements.txt # Check requirements after installation. This pr
 The project uses **Google Gemini** for generating AI insights about predicted salaries.
 
 ### ➤ Option 1: Using `.env` file (Recommended)
-Create a file named `.env` in your project folder and add:
+Create a file named `.env` in your project folder and write:
 ```
 GEMINI_API_KEY=your_actual_api_key_here
 ```
-
+If you're using the Gemini AI API key, just create a .env file in your project folder and replace "your_actual_api_key_here" with your actual key — no need to modify app.py code.
+```
 In your `app.py`, ensure you have the following:
 ```python
 from dotenv import load_dotenv
@@ -93,7 +92,7 @@ def llm_call(prediction, params):
         model = genai.GenerativeModel("gemini-2.5-flash")
         # ... your model logic here ...
     except Exception as e:
-        print("LLM Error:", e)
+        return f"(LLM explanation unavailable: {e})"
 ```
 
 ---
@@ -136,6 +135,20 @@ if __name__ == '__main__':
 
 ---
 
+## 📁 Project Structure
+
+Your project folder should look like:
+
+```
+salary-prediction/
+├── app.py
+├── templates/
+│   └── index.html
+├── requirements.txt
+└── .env        # Exists locally only, not on GitHub
+```
+---
+
 ## 📚 Future Enhancements
 
 - 🔐 Add user authentication  
@@ -147,9 +160,9 @@ if __name__ == '__main__':
 
 ## 🧑‍💻 Author
 
-**Your Name**  
+**Yendluri Nithish**  
 📧 your.email@example.com  
-🌐 [LinkedIn](https://linkedin.com/in/yourprofile) | [GitHub](https://github.com/yourusername)
+🌐 [LinkedIn](https://www.linkedin.com/in/nithish-yendluri-520279301) | [GitHub](https://github.com/nithish1921)
 
 ---
 
