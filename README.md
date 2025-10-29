@@ -6,7 +6,7 @@ It also provides **AI-generated insights** using **Google Gemini** (or any other
 ---
 
 ## 🚀 Live Demo
-👉 **[View on Render](https://salary-prediction-gi9d.onrender.com/)**
+👉 **[https://salary-prediction-gi9d.onrender.com/](https://salary-prediction-gi9d.onrender.com/)**
 
 ---
 
