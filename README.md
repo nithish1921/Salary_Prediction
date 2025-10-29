@@ -49,30 +49,31 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 ```bash
 git clone https://github.com/nithish1921/salary-prediction-system.git
 cd salary-prediction-system
-
-
 2️⃣ Create a Virtual Environment
-
+bash
+Copy code
 python -m venv venv
 venv\Scripts\activate      # On Windows
 # or
 source venv/bin/activate   # On macOS/Linux
-
 3️⃣ Install Dependencies
-
+bash
+Copy code
 pip install -r requirements.txt
-
-
 🔑 Setting Up the API Key (LLM AI Insight)
 The project uses Google Gemini API for generating AI insights about predicted salaries.
 
-➤ Option 1: Using .env file (Recommended)
-- Create a file named .env in your project root directory.
-- Add your Gemini API key inside .env as follows:
+➤ Option 1: Using .env File (Recommended)
+Create a file named .env in your project root directory.
+Add your Gemini API key inside .env as follows:
 
+ini
+Copy code
 GEMINI_API_KEY=your_actual_api_key_here
-- Ensure your app.py contains this code:
+Ensure your app.py contains this code:
 
+python
+Copy code
 from dotenv import load_dotenv
 import os, google.generativeai as genai
 
@@ -85,14 +86,18 @@ def llm_call(prediction, params):
         # your logic for AI insight generation here
     except Exception as e:
         print("LLM Error:", e)
-
 ➤ Option 2: Using a Different AI Provider (OpenAI / Claude / etc.)
 If you are using a different AI provider, follow these steps:
-- Replace your .env content completely with your custom key, for example:
 
+Replace your .env content completely with your custom key, for example:
+
+ini
+Copy code
 OPENAI_API_KEY=your_openai_key_here
-- Then modify your app.py code:
+Then modify your app.py code:
 
+python
+Copy code
 import os, openai
 from dotenv import load_dotenv
 
@@ -113,29 +118,28 @@ def llm_call(prediction, params):
 Always match your .env variable name and the key name in your code.
 
 ▶️ Running the Application
-
-For local testing, use:
-
+🧪 For Local Testing
+python
+Copy code
 if __name__ == '__main__':
     app.run(debug=True)
-
-For production (Render deployment), uncomment the serve() line:
+☁️ For Production (Render Deployment)
 Uncomment the serve() line in app.py:
 
+python
+Copy code
 if __name__ == '__main__':
     # serve(app, host='0.0.0.0', port=8080)  # For production (Render)
     app.run(debug=True)  # For local testing only
-
 📚 Future Enhancements
+🔐 Add user authentication
+Implement login and registration functionality for secure user access.
 
-- 🔐 **Add user authentication**  
-  Implement login and registration functionality for secure user access.
+📊 Data visualization for salary trends
+Integrate interactive charts to show salary distributions and trends.
 
-- 📊 **Data visualization for salary trends**  
-  Integrate interactive charts to show salary distributions and trends.
+🧠 Multi-model AI support (Gemini / OpenAI / Claude)
+Allow users to choose between multiple LLM providers for generating insights.
 
-- 🧠 **Multi-model AI support (Gemini / OpenAI / Claude)**  
-  Allow users to choose between multiple LLM providers for generating insights.
-
-- 🗄️ **Database integration for history tracking**  
-  Store previous predictions and AI insights for future reference.
+🗄️ Database integration for history tracking
+Store previous predictions and AI insights for future reference.
