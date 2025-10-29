@@ -6,6 +6,9 @@ from sklearn.preprocessing import LabelEncoder
 from waitress import serve
 import google.generativeai as genai
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -147,5 +150,5 @@ def index():
 
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=8080)
-    # app.run(debug=True)  # (For local testing only)
+    #serve(app, host='0.0.0.0', port=8080)
+    app.run(debug=True)  # (For local testing only)
