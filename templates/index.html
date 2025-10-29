@@ -62,13 +62,11 @@
 
               <div class="mb-2">
                 <label>Age</label>
-                <!-- Added value -->
                 <input class="form-control" id="age" name="Age" min="18" max="100" type="number" placeholder="e.g. 30" required value="{{ request.form.Age }}">
               </div>
 
               <div class="mb-2">
                 <label>Gender</label>
-                <!-- Added selection retention -->
                 <select class="form-select" name="Gender" required>
                   <option value="">Select Gender</option>
                   {% for g in dropdowns.Gender %}
@@ -99,7 +97,6 @@
 
               <div class="mb-2">
                 <label>Years of Experience</label>
-                <!-- Added value -->
                 <input class="form-control" id="exp" name="Years_of_Experience" type="number" step="0.1" placeholder="e.g. 3" required value="{{ request.form.Years_of_Experience }}">
               </div>
 
@@ -211,6 +208,15 @@
         predictButton.textContent = "Predicting... Please wait";
       }
     });
+
+    // 🆕 Reset form only on full page reload (not after submit)
+    const navEntries = performance.getEntriesByType("navigation");
+    if (
+      (performance.navigation && performance.navigation.type === 1) ||
+      (navEntries.length && navEntries[0].type === "reload")
+    ) {
+      document.getElementById("manualForm").reset();
+    }
   </script>
 </body>
 </html>
