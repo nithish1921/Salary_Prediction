@@ -47,30 +47,32 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/salary-prediction-system.git
+git clone https://github.com/nithish1921/salary-prediction-system.git
 cd salary-prediction-system
 
-### 2️⃣ Create a Virtual Environment
-```bash
+
+2️⃣ Create a Virtual Environment
+
 python -m venv venv
 venv\Scripts\activate      # On Windows
 # or
 source venv/bin/activate   # On macOS/Linux
 
-### 3️⃣ Install Dependencies
-```bash
+3️⃣ Install Dependencies
+
 pip install -r requirements.txt
 
-## 🔑 Setting Up the API Key (LLM AI Insight)
+
+🔑 Setting Up the API Key (LLM AI Insight)
 The project uses Google Gemini API for generating AI insights about predicted salaries.
 
-### ➤ Option 1: Using .env file (Recommended)
+➤ Option 1: Using .env file (Recommended)
 - Create a file named .env in your project root directory.
 - Add your Gemini API key inside .env as follows:
-```ini
+
 GEMINI_API_KEY=your_actual_api_key_here
 - Ensure your app.py contains this code:
-```python
+
 from dotenv import load_dotenv
 import os, google.generativeai as genai
 
@@ -84,13 +86,13 @@ def llm_call(prediction, params):
     except Exception as e:
         print("LLM Error:", e)
 
-### ➤ Option 1: Using .env file (Recommended)
+➤ Option 2: Using a Different AI Provider (OpenAI / Claude / etc.)
 If you are using a different AI provider, follow these steps:
 - Replace your .env content completely with your custom key, for example:
-```ini
+
 OPENAI_API_KEY=your_openai_key_here
 - Then modify your app.py code:
-```python
+
 import os, openai
 from dotenv import load_dotenv
 
@@ -107,24 +109,24 @@ def llm_call(prediction, params):
         return response.choices[0].text
     except Exception as e:
         print("LLM Error:", e)
-### ⚠️ Important:
+⚠️ Important:
 Always match your .env variable name and the key name in your code.
 
-## ▶️ Running the Application
+▶️ Running the Application
 
-### For local testing, use:
-```python
+For local testing, use:
+
 if __name__ == '__main__':
     app.run(debug=True)
 
-### For production (Render deployment), uncomment the serve() line:
+For production (Render deployment), uncomment the serve() line:
 Uncomment the serve() line in app.py:
-```python
+
 if __name__ == '__main__':
     # serve(app, host='0.0.0.0', port=8080)  # For production (Render)
     app.run(debug=True)  # For local testing only
 
-## 📚 Future Enhancements
+📚 Future Enhancements
 
 - 🔐 **Add user authentication**  
   Implement login and registration functionality for secure user access.
