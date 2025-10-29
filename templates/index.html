@@ -208,15 +208,6 @@
         predictButton.textContent = "Predicting... Please wait";
       }
     });
-
-    // 🆕 Reset form only on full page reload (not after submit)
-    const navEntries = performance.getEntriesByType("navigation");
-    if (
-      (performance.navigation && performance.navigation.type === 1) ||
-      (navEntries.length && navEntries[0].type === "reload")
-    ) {
-      document.getElementById("manualForm").reset();
-    }
   </script>
 </body>
 </html>

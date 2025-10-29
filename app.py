@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, request, render_template, flash
 import pandas as pd
 import numpy as np
 import pickle
@@ -114,11 +114,10 @@ def index():
                 # LLM Reasoning
                 llm_message = llm_call(label, data.to_dict(orient='records')[0])
 
-                # Store prediction in session and redirect to clear form
-                session['prediction'] = f"Predicted Salary: {label}"
-                session['llm_message'] = llm_message
-                return redirect(url_for('index'))
-
+                return render_template("index.html",
+                                       dropdowns=dropdowns,
+                                       prediction=f"Predicted Salary: {label}",
+                                       llm_message=llm_message)
             except Exception as e:
                 flash(f"Error: {e}", "danger")
 
@@ -143,26 +142,13 @@ def index():
                 df_display['Predicted_Salary'] = np.where(preds == 0, '<120K', '>=120K')
 
                 table_html = df_display.to_html(classes='table table-striped', index=False)
-
-                # Store table in session and redirect
-                session['result_table'] = table_html
-                return redirect(url_for('index'))
-
+                return render_template("index.html", dropdowns=dropdowns, result_table=table_html)
             except Exception as e:
                 flash(f"Error reading or processing file: {e}", "danger")
 
-    # ====== Handle GET Request (after redirect or refresh) ======
-    prediction = session.pop('prediction', None)
-    llm_message = session.pop('llm_message', None)
-    result_table = session.pop('result_table', None)
-
-    return render_template("index.html",
-                           dropdowns=dropdowns,
-                           prediction=prediction,
-                           llm_message=llm_message,
-                           result_table=result_table)
+    return render_template("index.html", dropdowns=dropdowns)
 
 
 if __name__ == '__main__':
-    #serve(app, host='0.0.0.0', port=8080) # For production
-    app.run(debug=True)  # (For local testing only)
+    serve(app, host='0.0.0.0', port=8080) # For production
+    #app.run(debug=True)  # (For local testing only)
