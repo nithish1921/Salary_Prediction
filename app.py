@@ -109,7 +109,7 @@ def index():
 
                 encoded = encode_input(data)
                 pred = model.predict(encoded)[0]
-                label = "<120K" if pred == 0 else ">=120K"
+                label = "< $120K" if pred == 0 else ">= $120K"
 
                 # LLM Reasoning
                 llm_message = llm_call(label, data.to_dict(orient='records')[0])
