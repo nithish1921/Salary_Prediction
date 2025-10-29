@@ -31,6 +31,7 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 | 🌐 **Responsive UI** | Built with Flask + Bootstrap |
 | ☁️ **Cloud Deployment** | Hosted on Render |
 
+---
 
 ## ⚙️ Installation & Setup
 
@@ -52,8 +53,6 @@ source venv/bin/activate   # On macOS/Linux
 ```bash
 pip install -r requirements.txt
 ```
-
----
 
 ---
 
