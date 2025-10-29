@@ -31,20 +31,6 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 | 🌐 **Responsive UI** | Built with Flask + Bootstrap |
 | ☁️ **Cloud Deployment** | Hosted on Render |
 
----
-
-## 🛠️ Tech Stack
-
-| Category | Tools / Libraries |
-|-----------|------------------|
-| **Frontend** | HTML5, CSS3, Bootstrap 5 |
-| **Backend** | Python, Flask |
-| **Machine Learning** | Scikit-learn, Pandas, NumPy |
-| **AI Integration** | Google Gemini API (`google-generativeai`) |
-| **Deployment** | Render |
-| **Version Control** | Git, GitHub |
-
----
 
 ## ⚙️ Installation & Setup
 
@@ -66,6 +52,21 @@ source venv/bin/activate   # On macOS/Linux
 ```bash
 pip install -r requirements.txt
 ```
+
+---
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Tools / Libraries |
+|-----------|------------------|
+| **Frontend** | HTML5, CSS3, Bootstrap 5 |
+| **Backend** | Python, Flask |
+| **Machine Learning** | Scikit-learn, Pandas, NumPy |
+| **AI Integration** | Google Gemini API (`google-generativeai`) |
+| **Deployment** | Render |
+| **Version Control** | Git, GitHub |
 
 ---
 
