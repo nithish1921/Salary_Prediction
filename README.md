@@ -6,27 +6,30 @@ It also provides **AI-generated insights** using **Google Gemini** (or any other
 ---
 
 ## 🚀 Live Demo
-👉 **[https://salary-prediction-gi9d.onrender.com/](https://salary-prediction-gi9d.onrender.com/)**
+👉 [https://salary-prediction-gi9d.onrender.com/]()
 
 ---
 
 ## 🧠 Project Overview
+
 The project allows both **manual** and **bulk (CSV)** salary predictions, supported by:
-- 💡 AI-powered salary insights using API  
-- 📄 Bulk Upload option for CSV files  
-- 🧮 Trained ML Model using Scikit-learn  
-- 🌐 Interactive Bootstrap-based web interface  
-- ☁️ Fully deployed on Render  
+
+- 🤖 **AI-powered salary insights** using Gemini API  
+- 🎨 **Beautiful Bootstrap UI**  
+- ⏳ **Real-time “Predicting… Please wait” status**  
+- ☁️ **Deployed on Render for public access**
 
 ---
 
 ## 🧩 Features
-- 💬 **AI Insight Generation** using Gemini  
-- 🧠 **ML Model** trained for salary prediction  
-- 📂 **Bulk CSV Upload** for multi-record predictions  
-- ⚙️ **Flask Web Framework** for backend  
-- 💻 **Bootstrap 5 UI** for responsive design  
-- 🌍 **Render Deployment** for global access  
+
+| Feature | Description |
+|----------|--------------|
+| 💡 **AI Insights** | Powered by Google Gemini |
+| 📄 **Bulk Upload** | Upload CSV for multiple predictions |
+| 🧮 **ML Model** | Trained using Scikit-learn |
+| 🌐 **Responsive UI** | Built with Flask + Bootstrap |
+| ☁️ **Cloud Deployment** | Hosted on Render |
 
 ---
 
@@ -49,31 +52,35 @@ The project allows both **manual** and **bulk (CSV)** salary predictions, suppor
 ```bash
 git clone https://github.com/nithish1921/salary-prediction-system.git
 cd salary-prediction-system
-2️⃣ Create a Virtual Environment
-bash
-Copy code
+```
+
+### 2️⃣ Create Virtual Environment
+```bash
 python -m venv venv
 venv\Scripts\activate      # On Windows
 # or
 source venv/bin/activate   # On macOS/Linux
-3️⃣ Install Dependencies
-bash
-Copy code
+```
+
+### 3️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
-🔑 Setting Up the API Key (LLM AI Insight)
-The project uses Google Gemini API for generating AI insights about predicted salaries.
+```
 
-➤ Option 1: Using .env File (Recommended)
-Create a file named .env in your project root directory.
-Add your Gemini API key inside .env as follows:
+---
 
-ini
-Copy code
+## 🔑 Setting Up the API Key (LLM AI Insight)
+
+The project uses **Google Gemini** for generating AI insights about predicted salaries.
+
+### ➤ Option 1: Using `.env` file (Recommended)
+Create a file named `.env` in your project folder and add:
+```
 GEMINI_API_KEY=your_actual_api_key_here
-Ensure your app.py contains this code:
+```
 
-python
-Copy code
+In your `app.py`, ensure you have the following:
+```python
 from dotenv import load_dotenv
 import os, google.generativeai as genai
 
@@ -83,63 +90,66 @@ def llm_call(prediction, params):
     try:
         genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
         model = genai.GenerativeModel("gemini-2.5-flash")
-        # your logic for AI insight generation here
+        # ... your model logic here ...
     except Exception as e:
         print("LLM Error:", e)
-➤ Option 2: Using a Different AI Provider (OpenAI / Claude / etc.)
-If you are using a different AI provider, follow these steps:
+```
 
-Replace your .env content completely with your custom key, for example:
+---
 
-ini
-Copy code
+### ➤ Option 2: Using a Different API (e.g., OpenAI, Claude)
+If you’re using another AI provider, replace your `.env` content with:
+```
 OPENAI_API_KEY=your_openai_key_here
-Then modify your app.py code:
+```
 
-python
-Copy code
-import os, openai
-from dotenv import load_dotenv
+Then modify your configuration in `app.py`:
+```python
+# Replace Gemini config with your preferred API
+genai.configure(api_key=os.getenv("OPENAI_API_KEY"))
+model = genai.GenerativeModel("your-model-name-here")
+```
 
-load_dotenv()
+⚠️ **Important:**  
+Make sure you update **both**:
+1. The `.env` variable name  
+2. The corresponding `os.getenv()` call in your code
 
-def llm_call(prediction, params):
-    try:
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        # Replace with your model and logic
-        response = openai.Completion.create(
-            model="gpt-4-turbo",
-            prompt=f"Explain this salary prediction: {prediction}, {params}"
-        )
-        return response.choices[0].text
-    except Exception as e:
-        print("LLM Error:", e)
-⚠️ Important:
-Always match your .env variable name and the key name in your code.
+---
 
-▶️ Running the Application
-🧪 For Local Testing
-python
-Copy code
+## ▶️ Running the Application
+
+### For local testing:
+```python
 if __name__ == '__main__':
     app.run(debug=True)
-☁️ For Production (Render Deployment)
-Uncomment the serve() line in app.py:
+```
 
-python
-Copy code
+### For production (Render deployment):
+Uncomment the `serve()` line:
+```python
 if __name__ == '__main__':
     # serve(app, host='0.0.0.0', port=8080)  # For production (Render)
     app.run(debug=True)  # For local testing only
-📚 Future Enhancements
-🔐 Add user authentication
-Implement login and registration functionality for secure user access.
+```
 
-📊 Data visualization for salary trends
-Integrate interactive charts to show salary distributions and trends.
+---
 
-🧠 Multi-model AI support (Gemini / OpenAI / Claude)
-Allow users to choose between multiple LLM providers for generating insights.
+## 📚 Future Enhancements
 
-🗄️ Database integration for history tracking
-Store previous predictions and AI insights for future reference.
+- 🔐 Add user authentication  
+- 📊 Data visualization for salary trends  
+- 🧠 Support multiple AI models (Gemini / OpenAI / Claude)  
+- 💾 Database storage for previous predictions  
+
+---
+
+## 🧑‍💻 Author
+
+**Your Name**  
+📧 your.email@example.com  
+🌐 [LinkedIn](https://linkedin.com/in/yourprofile) | [GitHub](https://github.com/yourusername)
+
+---
+
+⭐ **If you like this project, don’t forget to give it a star on GitHub!**
