@@ -69,7 +69,7 @@ def llm_call(prediction, params):
 
         Write a short, human-friendly reasoning message (2-3 sentences)
         explaining why this salary prediction makes sense, mentioning
-        relevant factors like education, experience, or job role.
+        relevant factors like education, experience, location, department or job role.
         Keep it engaging and conversational.
         """
 
@@ -150,5 +150,5 @@ def index():
 
 
 if __name__ == '__main__':
-    #serve(app, host='0.0.0.0', port=8080)
+    serve(app, host='0.0.0.0', port=8080) # For production
     app.run(debug=True)  # (For local testing only)
