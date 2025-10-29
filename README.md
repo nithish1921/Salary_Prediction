@@ -78,7 +78,7 @@ Create a file named `.env` in your project folder and write:
 GEMINI_API_KEY=your_actual_api_key_here
 ```
 If you're using the Gemini AI API key, just create a .env file in your project folder and replace "your_actual_api_key_here" with your actual key — no need to modify app.py code.
-```
+
 In your `app.py`, ensure you have the following:
 ```python
 from dotenv import load_dotenv
