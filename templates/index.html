@@ -208,18 +208,6 @@
         predictButton.textContent = "Predicting... Please wait";
       }
     });
-  window.addEventListener("beforeunload", function () {
-  const data = {};
-  document.querySelectorAll("input, select, textarea").forEach(el => {
-    if (el.name) data[el.name] = el.value;
-  });
-  navigator.sendBeacon("/save_previous_inputs", JSON.stringify(data));
-});window.onload = function () {
-window.onload = function () {
-  document.querySelectorAll("input, select, textarea").forEach(el => {
-    el.value = ""; // clear all on reload
-});
-};
   </script>
 </body>
 </html>
