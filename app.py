@@ -6,9 +6,10 @@ from sklearn.preprocessing import LabelEncoder
 from waitress import serve
 import google.generativeai as genai
 import os
+import sqlite3   # === Added for reload saving ===
+import json       # === Added for reload saving ===
 from dotenv import load_dotenv
 load_dotenv()
-
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -79,10 +80,32 @@ def llm_call(prediction, params):
         return f"(LLM explanation unavailable: {e})"
 
 
+# === Added for reload saving ===
+@app.route('/save_previous_inputs', methods=['POST'])
+def save_previous_inputs():
+    try:
+        data = request.get_data(as_text=True)
+        if data:
+            values = json.loads(data)
+            conn = sqlite3.connect('user_inputs.db')
+            c = conn.cursor()
+            c.execute('''CREATE TABLE IF NOT EXISTS inputs (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            input_data TEXT
+                        )''')
+            c.execute("INSERT INTO inputs (input_data) VALUES (?)", [json.dumps(values)])
+            conn.commit()
+            conn.close()
+        return '', 204
+    except Exception as e:
+        print("Error saving inputs:", e)
+        return '', 500
+# === End added section ===
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        # Manual Prediction
         if 'predict_manual' in request.form:
             try:
                 age = float(request.form.get("Age"))
@@ -111,7 +134,6 @@ def index():
                 pred = model.predict(encoded)[0]
                 label = "< $120K" if pred == 0 else ">= $120K"
 
-                # LLM Reasoning
                 llm_message = llm_call(label, data.to_dict(orient='records')[0])
 
                 return render_template("index.html",
@@ -150,5 +172,5 @@ def index():
 
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=8080) # For production
-    #app.run(debug=True)  # (For local testing only)
+    #serve(app, host='0.0.0.0', port=8080)
+    app.run(debug=True)  # (For local testing only)
